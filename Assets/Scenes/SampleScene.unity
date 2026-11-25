@@ -932,6 +932,9 @@ MonoBehaviour:
   redLight: {fileID: 2136510388}
   ambarLight: {fileID: 75170171}
   greenLight: {fileID: 921345796}
+  timeinRed: 10
+  timeingreen: 15
+  timeinambar: 2
 --- !u!1 &1762817545
 GameObject:
   m_ObjectHideFlags: 0
