@@ -2,54 +2,38 @@ using UnityEngine;
 
 public class SemaforoEnum : MonoBehaviour
 {
-    [SerializeField]
-    GameObject redLight;
-    [SerializeField]
-    GameObject ambarLight;
-    [SerializeField]
-    GameObject greenLight;
-
-    [SerializeField]
-    float timeinRed = 10f;
-    [SerializeField]
-    float timeingreen = 15f;
-    [SerializeField]
-    float timeinambar = 2f;
-
-    float contador = 0f;
-    void Start()
+    public enum EstadoEnumSemaforo
     {
-        EncenderLuces(false, false, true);
+        enRojo,
+        enVerde,
+        enAmarillo
     }
 
-    void EncenderLuces(bool greenStatus, bool ambarStatus, bool redStatus)
+    [SerializeField]
+    EstadoEnumSemaforo estadoSemaforo = EstadoEnumSemaforo.enRojo;
+
+    float timer = 0.0f;
+
+    private void Start()
     {
-        redLight.SetActive(redStatus);
-        greenLight.SetActive(greenStatus);
-        ambarLight.SetActive(ambarStatus);
-        
+        //Poner luces rojo
     }
-
-    
-
     void Update()
     {
-        contador += Time.deltaTime;
-
-        if (contador >= timeinRed && redLight.activeSelf == true)
+        switch (estadoSemaforo)
         {
-            EncenderLuces(true, false, false);
-            contador = 0f;
+            case EstadoEnumSemaforo.enRojo:
+                EjecutaSemaforoRojo();
+                break;
         }
-        else if (contador>= timeingreen && greenLight.activeSelf == true){
-            EncenderLuces(false, true, false);
-            contador = 0.0f;
-        }
-        else if (contador>= timeinambar && ambarLight.activeSelf == true)
-        {
-            EncenderLuces(false, false, true);
-            contador = 0.0f;
-        }
+    }
 
+    void EjecutaSemaforoRojo()
+    {
+        if (timer > 10.0f)
+        {
+            //Poner luz en verde
+            estadoSemaforo = EstadoEnumSemaforo.enVerde;
+        }
     }
 }
